@@ -19,7 +19,7 @@ int main(void)
 			{
 				for (d = 48; d <= 57; d++)
 				{
-					if (a == 48 || b == 48 || c == 48 || d == 48)
+					if (d == 48)
 					{
 						continue;
 					}
