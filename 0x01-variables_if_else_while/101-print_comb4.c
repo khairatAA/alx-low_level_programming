@@ -19,11 +19,11 @@ int main(void)
 				putchar(i);
 				putchar(j);
 				putchar(x);
-			}
-			if (i != 55 || j != 56 || x != 57)
-			{
-				putchar(44);
-				putchar(32);
+				if (i != 55 || j != 56 || x != 57)
+				{
+					putchar(44);
+					putchar(32);
+				}
 			}
 		}
 	}
