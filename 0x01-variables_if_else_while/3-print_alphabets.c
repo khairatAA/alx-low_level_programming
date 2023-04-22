@@ -16,10 +16,10 @@ char ch;
 for (alp = 'a'; alp <= 'z'; alp++)
 {
 	putchar(alp);
-for (ch = 'a'; ch <= 'z'; ch++)
+};
+for (ch = 'A'; ch <= 'Z'; ch++)
 {
 	putchar(ch);
-};
 };
 	putchar('\n');
 	return (0);
