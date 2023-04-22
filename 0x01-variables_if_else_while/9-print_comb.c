@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 /**
  * main - Entry point
  *
@@ -11,13 +12,13 @@ int main(void)
 	for (num = 48; num < 58; num++)
 	{
 		putchar(num);
-			if (num < 57)
-			{
-				putchar(44);
-				putchar(32);
-			}
+		if (num < 57)
+		{
+			putchar(44);
+			putchar(32);
+		}
 	}
-	putchar('\n')
+	putchar('\n');
 
 	return (0);
 }
