@@ -4,14 +4,20 @@
 /**
  * _abs - computes the absolute value of an integer
  *
- * @a: the integer valuse to test
+ * @i: the integer value to test
  *
  * Return: Always 0 (success) in _abs
  */
-
-int _abs(int a)
+int _abs(int i)
 {
-	a = abs(a);
+	if (i > 0)
+	{
+		return (i);
+	}
+	else
+	{
+		return (-i);
+	}
 
 	return (0);
 }
