@@ -13,7 +13,7 @@ int main(void)
 	long n;
 
 	n = 612852475143;
-	max = 0;
+	max = 2;
 	while (n  % 2 == 0)
 	{
 		max = 2;
@@ -23,13 +23,19 @@ int main(void)
 	{
 		while (n % i == 0)
 		{
-			max = i;
-			n = n / i;
+			n /= i;
+			if (i > max)
+			{
+				max = i;
+			}
 		}
 	}
 	if (n > 2)
 	{
+		if (n > max)
+		{
 		max = n;
+		}
 	}
 	printf("%ld\n", n);
 
