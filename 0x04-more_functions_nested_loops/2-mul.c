@@ -5,14 +5,12 @@
  * mul - multiplies two integers
  * @a: integer one to be tested
  * @b: integer two to be tested
- * Return: Always 0 (success)
+ * Return: Always return product
  */
 int mul(int a, int b)
 {
 	int product;
 
 	product = a * b;
-	_putchar(product);
-
-	return (0);
+	return (product);
 }
