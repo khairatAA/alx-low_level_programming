@@ -6,12 +6,12 @@
  */
 int main(void)
 {
-	int a, b, i;
-	long c;
+	int i;
+	long a, b, c;
 
 	a = 1;
 	b = 2;
-	printf("%d, %d", a, b);
+	printf("%ld, %ld", a, b);
 	for (i = 3; i <= 50; ++i)
 	{
 		c = a + b;
