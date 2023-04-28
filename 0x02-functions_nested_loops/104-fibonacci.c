@@ -13,12 +13,12 @@ int main(void)
 	a = 1;
 	b = 2;
 	printf("%ld, %ld", a, b);
-	for (i = 3; i <= 98; i++)
+	for (i = 3; i <= 98; ++i)
 	{
 		c = a + b;
 		a = b;
-		c = b;
-		printf(" ,%ld", c);
+		b = c;
+		printf(", %ld", c);
 	}
 	printf("\n");
 
