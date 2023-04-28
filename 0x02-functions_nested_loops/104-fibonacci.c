@@ -8,26 +8,33 @@
 int main(void)
 {
 	int i;
-	int a, b, c;
+	unsigned long int from1, back1, from2, back2;
+	unsigned long int st1, st2, st3;
 
-	a = 1;
-	b = 2;
-	printf("%d, %d", a, b);
-	for (i = 3; i <= 98; ++i)
+	from1 = 0;
+	back1 = 1;
+	from2 = 0;
+	back2 = 2;
+	printf("%lu, %lu, ", back1, back2);
+	for (i = 2; i <= 98; i++)
 	{
-		c = a + b;
-		if (c < a || c < b)
+		if ((back1 + back2 > 10000000000) || from2 > 0 || from1 > 0)
 		{
-			a = 1;
-			b = 2;
-			printf("%d, ", a);
+			st1 = (back1 + back2) / 10000000000;
+			st2 = (back1 + back2) % 10000000000;
+			st3 = from1 + from2 + st1;
+			from1 = from2, from2 = st3;
+			back1 =  back2, back2 = st2;
+			printf("%lu%010lu", from2, back2);
 		}
 		else
 		{
-			a = b;
-			b = c;
-			printf("%d, ", c);
+			st2 = back1 + back2;
+			back1 = back2, back2 = st2;
+			printf("%lu", back2);
 		}
+		if (i != 97)
+			printf(", ");
 	}
 	printf("\n");
 
