@@ -8,17 +8,26 @@
 int main(void)
 {
 	int i;
-	long a, b, c;
+	int a, b, c;
 
 	a = 1;
 	b = 2;
-	printf("%ld, %ld", a, b);
+	printf("%d, %d", a, b);
 	for (i = 3; i <= 98; ++i)
 	{
 		c = a + b;
-		a = b;
-		b = c;
-		printf(", %ld", c);
+		if (c < a || c < b)
+		{
+			a = 1;
+			b = 2;
+			printf("%d, ", a);
+		}
+		else
+		{
+			a = b;
+			b = c;
+			printf("%d, ", c);
+		}
 	}
 	printf("\n");
 
