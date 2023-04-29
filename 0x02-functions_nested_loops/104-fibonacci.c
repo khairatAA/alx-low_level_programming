@@ -16,7 +16,7 @@ int main(void)
 	from2 = 0;
 	back2 = 2;
 	printf("%lu, %lu, ", back1, back2);
-	for (i = 2; i <= 98; i++)
+	for (i = 2; i <= 97; i++)
 	{
 		if ((back1 + back2 > 10000000000) || from2 > 0 || from1 > 0)
 		{
