@@ -4,6 +4,7 @@
 
 /**
  * string_toupper - changes all lowercase letters of a string to uppercase
+ * @str: string to be tested
  * Return: success
  */
 char *string_toupper(char *str)
