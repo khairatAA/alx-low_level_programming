@@ -9,18 +9,19 @@
  */
 char *rot13(char *str)
 {
-	int i;
+	int i, j;
+	char l[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char lrot[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
-		if ((str[i] >= 'a' && str[i] <= 'm') || (str[i] >= 'A' && str[i] <= 'M'))
+		for (j = 0; j < 52; j++)
 		{
-			str[i] = str[i] + 13;
-		}
-		else if ((str[i] >= 'n' && str[i] <= 'z') || (str[i] >= 'N' &&
-			str[i] <= 'Z'))
-		{
-			str[i] = str[i] - 13;
+			if (str[i] == l[j])
+			{
+				str[i] = lrot[j];
+				break;
+			}
 		}
 	}
 
