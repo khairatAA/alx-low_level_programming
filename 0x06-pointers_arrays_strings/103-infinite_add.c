@@ -12,8 +12,7 @@
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int value = 0;
-	int carry = 0;
+	int value = 0, carry = 0;
 	int i = 0, j = 0;
 	int digit1 = 0, digit2 = 0, sum = 0;
 
@@ -24,9 +23,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	i--;
 	j--;
 	if (j >= size_r || i >= size_r)
-	{
 		return (0);
-	}
 	while (i >= 0 || j >= 0 || carry == 1)
 	{
 		if (i < 0)
@@ -39,13 +36,9 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 			digit2 = *(n2 + j) - '0';
 		sum = digit1 + digit2 + carry;
 		if (sum >= 10)
-		{
 			carry = 1;
-		}
 		else
-		{
 			carry = 0;
-		}
 		if (value >= (size_r - 1))
 			return (0);
 		*(r + value) = (sum % 10) + '0';
