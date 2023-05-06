@@ -3,6 +3,24 @@
 #include <string.h>
 
 /**
+ * rev_string - reverses a string
+ * @s: string to be tested
+ */
+void rev_string(char *s)
+{
+	int len, i;
+	char ch;
+
+	len = strlen(s);
+	for (i = 0; i < len / 2; i++)
+	{
+		ch = s[i];
+		s[i] = s[len - 1 - i];
+		s[len - 1 - i] =  ch;
+	}
+}
+
+/**
  * infinite_add - adds two numbers
  * @n1: first int
  * @n2: second int
