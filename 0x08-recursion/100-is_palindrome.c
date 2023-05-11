@@ -5,6 +5,8 @@
 /**
  * is_palindrome - returns 1 if a string is a palindrome and 0 if not
  * @s: string
+ * @start: start s
+ * @end: end s
  * Return: s
  */
 int palindrome(char *s, int start, int end);
@@ -18,6 +20,8 @@ int is_palindrome(char *s)
 /**
  * palindrome - returns 1 if a string is a palindrome and 0 if not
  * @s: string
+ * @start: start s
+ * @end: end s
  * Return: s
  */
 int palindrome(char *s, int start, int end)
@@ -26,7 +30,7 @@ int palindrome(char *s, int start, int end)
 
 		return (1);
 	if (s[start] == s[end])
-		
+
 		return (palindrome(s, start + 1, end - 1));
 
 	return (0);
