@@ -5,11 +5,30 @@
 /**
  * _sqrt_recursion -  returns the natural square root of a number
  * @n: integer
- * @start: start
- * @end: end
+ * @min: minimum
+ * @max: maxximum
  * Return: n
  */
-int sqrt_(int n, int start, int end);
+int _sqrt_num(int n,int min, int max);
+
+int _sqrt_num(int n,int min, int max)
+{
+	int guess, square;
+
+	if (max < min)
+
+		return (-1);
+	guess = (min + max) / 2;
+	square = guess * guess;
+	if (square == n)
+
+		return (guess);
+	else if (square < n)
+
+		return (_sqrt_num(n, guess + 1, max));
+
+	return(_sqrt_num(n, min, guess - 1));
+}
 
 int _sqrt_recursion(int n)
 {
@@ -17,30 +36,5 @@ int _sqrt_recursion(int n)
 
 		return (-1);
 
-	return (sqrt_(n, 0, n));
-}
-
-/**
- * sqrt_ -  returns the natural square root of a number
- * @n: integer
- * @start: start
- * @end: end
- * Return: n
- */
-int sqrt_(int n, int start, int end)
-{
-	int mid;
-
-	if (start > end)
-
-		return (-1);
-	mid = (start + end) / 2;
-	if (mid * mid == n)
-
-		return (mid);
-	if (mid * mid < n)
-
-		return (sqrt_(n, mid + 1, end));
-
-	return (sqrt_(n, start, mid - 1));
+	return (_sqrt_num(n, 0, n));
 }
