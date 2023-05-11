@@ -38,9 +38,9 @@ int sqrt_(int n, int start, int end)
 	if (mid * mid == n)
 
 		return (mid);
-	else if (mid * mid < n)
+	if (mid * mid < n)
 
 		return (sqrt_(n, mid + 1, end));
 
-		return (sqrt_(n, start, mid - 1));
+	return (sqrt_(n, start, mid - 1));
 }
