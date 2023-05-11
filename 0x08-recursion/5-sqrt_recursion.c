@@ -13,7 +13,8 @@ int _sqrt_num(int n,int min, int max);
 
 int _sqrt_num(int n,int min, int max)
 {
-	int guess, square;
+	int guess;
+	long int square;
 
 	if (max < min)
 
