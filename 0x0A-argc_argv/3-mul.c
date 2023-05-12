@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 #include "main.h"
+
+int _atoi(char *s);
+
 /**
  * main - Entry point
  * @argc: command line arugments counts
  * @argv: command line arugments string
  * Return: 1 or 0 success always
  */
-int _atoi(char *s);
 int main(int argc, char *argv[])
 {
 	int a = 0, b = 0, multi;
@@ -36,16 +38,14 @@ int _atoi(char *s)
 	unsigned int value = 0;
 	int sign = 1;
 
-	do
-	{
+	do {
 		if (*s == '-')
 			sign = sign * -1;
 		else if (*s >= '0' && *s <= '9')
 			value = (value * 10) + (*s - '0');
 		else if (value > 0)
 			break;
-	}
-	while (*s++);
+	} while (*s++);
 
 	return (value * sign);
 }
