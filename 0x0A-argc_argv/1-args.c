@@ -6,12 +6,12 @@
  * main - entry point
  * @argc: command line arugments counts
  * @argv: command line arugments string
- * Return: 1
+ * Return: 0 sucess always
  */
 int main(int argc, char *argv[])
 {
-	if (*argv[argc - 1])
-		printf("%d\n", argc - 1);
+	(void) argv;
+	printf("%d\n", argc - 1);
 
-	return (1);
+	return (0);
 }
