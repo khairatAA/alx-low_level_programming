@@ -23,7 +23,10 @@ int main(int argc, char *argv[])
 	num = atoi(argv[1]);
 
 	if (num < 0)
+	{
 		printf("0\n");
+		return (0);
+	}
 	price = 0;
 	for (i = 0; i <= 5 && num >= 0; i++)
 	{
