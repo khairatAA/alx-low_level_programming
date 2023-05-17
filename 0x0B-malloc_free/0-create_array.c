@@ -18,6 +18,10 @@ char *create_array(unsigned int size, char c)
 	{
 		ptrArray[count] = c;
 	}
+	if (NULL)
+	{
+		printf("failed to allocate memory\n");
+	}
 
 	return (ptrArray);
 }
