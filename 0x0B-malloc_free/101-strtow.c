@@ -35,8 +35,8 @@ int *get_word_lengths(char *str, int words)
 	int *sizes;
 
 	sizes = malloc(words * sizeof(int));
-		if (sizes == NULL)
-			return (NULL);
+	if (sizes == NULL)
+		return (NULL);
 	i = 0;
 	word = 0;
 	while (word < words)
@@ -92,7 +92,7 @@ char **strtow(char *str)
 			free(sizes);
 			return (NULL);
 		}
-		while (str[j] != '\0' && i == cur_word)
+		while (str[j] != '\0' && (i == cur_word && str[j] != ' '))
 		{
 			if (str[j] != ' ')
 			{
@@ -107,6 +107,8 @@ char **strtow(char *str)
 			}
 			j++;
 		}
+		if (str[j] == ' ')
+			j++;
 	}
 	words_arr[i] = NULL;
 	free(sizes);
