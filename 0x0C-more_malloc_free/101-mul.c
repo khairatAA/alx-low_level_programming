@@ -13,7 +13,7 @@ void print_str(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		_putchar(str[i] != '\0');
+		_putchar(str[i]);
 		i++;
 	}
 	_putchar('\n');
@@ -45,24 +45,17 @@ void rev_string(char *s, int size)
 	char *str;
 	int i, r;
 
-	str = malloc(size);
+	str = malloc(size * sizeof(char));
 	if (str == NULL)
 		print_err();
-	i = 0;
-	while (*(s + i) != 0)
+	for (i = 0; i < size; i++)
+		str[i] = s[i];
+	r = size - 1;
+	for (i = 0; i < size; i++)
 	{
-		str[i] = *(s + i);
-		i++;
-	}
-	r = i - 1;
-	i = 0;
-	while (r > 0)
-	{
-		*(s + r) = str[i];
+		s[i] = str[r];
 		r--;
-		i++;
 	}
-	*(s + r) = str[i];
 	free(str);
 }
 
@@ -138,7 +131,9 @@ char *remove_zeroes(char *str, int len)
 		i++;
 	if (len - i == 0)
 	{
-		nstr = malloc(2 * sizeof(*nstr));
+		nstr = malloc(2 * sizeof(char));
+		if (nstr == NULL)
+			print_err();
 		nstr[0] = '0';
 		nstr[1] = '\0';
 
@@ -146,7 +141,9 @@ char *remove_zeroes(char *str, int len)
 	}
 	else
 		len = len - i;
-	nstr = malloc((len + 1) * sizeof(*nstr));
+	nstr = malloc((len + 1) * sizeof(char));
+	if (nstr == NULL)
+		print_err();
 	j = 0;
 	while (j < len)
 	{
@@ -261,15 +258,9 @@ int main(int argc, char *argv[])
 	char *ans, *num1, *num2;
 
 	if (argc != 3)
-	{
 		print_err();
-		exit(98);
-	}
-	if (_isstrdigit(argv[1]) == 0 || _isstrdigit(argv[2]) == 0)
-	{
+	if (!_isstrdigit(argv[1]) || !_isstrdigit(argv[2]))
 		print_err();
-		exit(98);
-	}
 	len1 = str_len(argv[1]);
 	len2 = str_len(argv[2]);
 	num1 = check_zero(argv[1], len1);
