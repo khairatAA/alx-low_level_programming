@@ -116,7 +116,7 @@ int _isstrdigit(char *str)
 }
 
 /**
- * remove_zeros - removes zero from the number
+ * remove_zeroes - removes zero from the number
  * @str: sing to be tested
  * @len: the length of the string
  * Return: a pointer
