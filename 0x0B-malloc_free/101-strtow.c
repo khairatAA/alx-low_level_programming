@@ -2,11 +2,11 @@
 #include <stdlib.h>
 
 /**
- * count_word: count number of words separated by spaces in the string
+ * count_words - count number of words separated by spaces in the string
  * @str: string to be tested
- * Return: int pointer
+ * Return: the number of words
  */
-int count_word(char *str)
+int count_words(char *str)
 {
 	int i = 0;
 	int count = 0;
@@ -16,7 +16,6 @@ int count_word(char *str)
 		if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
 		{
 			count++;
-			i++;
 		}
 		i++;
 	}
@@ -25,12 +24,12 @@ int count_word(char *str)
 }
 
 /**
- * words_len - length of all the words in a string
+ * get_word_lengths - gets the length of all the words in a string
  * @str: string to be tested
- * @words: words in the string
- * Return: a pointer
+ * @words: number of words in the string
+ * Return: An array coning the length of each word
  */
-int *words_len(char *str, int words)
+int *get_word_lengths(char *str, int words)
 {
 	int i, word, len;
 	int *sizes;
@@ -45,16 +44,16 @@ int *words_len(char *str, int words)
 		if (str[i] != ' ')
 		{
 			len = 0;
-			while (str[i] != ' ')
+			while (str[i] != ' ' && str[i] != '\0')
 			{
 				len++;
 				i++;
 			}
-			len++;
 			sizes[word] = len;
 			word++;
 		}
-		i++;
+		if (str[i] != '\0')
+			i++;
 	}
 
 	return (sizes);
@@ -67,44 +66,49 @@ int *words_len(char *str, int words)
  */
 char **strtow(char *str)
 {
-	char **ptr1;
-	int words, i, j, k, *sizes, cur_words;
+	char **words_arr;
+	int words, i, j, k, *sizes, cur_word;
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
-	words = count_word(str);
-	sizes = malloc(words * sizeof(int));
-	if (sizes == NULL)
+	words = count_words(str);
+	sizes = get_word_lengths(str, words);
+	words_arr = malloc((words + 1) * sizeof(char *));
+	if (words_arr == NULL)
+	{
+		free(sizes);
 		return (NULL);
-	sizes = words_len(str, words);
-	ptr1 = malloc((words + 1) * sizeof(char *));
-	if (ptr1 == NULL)
-		return (NULL);
+	}
 	i = 0, j = 0, k = 0;
 	while (i < words && str[j] != '\0')
 	{
-		cur_words = i;
-		ptr1[i] = malloc(sizes[i] + sizeof(char));
-		if (ptr1[i] == NULL)
+		cur_word = i;
+		words_arr[i] = malloc((sizes[i] + 1) * sizeof(char));
+		if (words_arr[i] == NULL)
 		{
-			for (i = i - 1; i >= 0; i--)
-				free(ptr1[i--]);
-			free(ptr1);
+			while (i > 0)
+				free(words_arr[--i]);
+			free(words_arr);
+			free(sizes);
 			return (NULL);
 		}
-		while (str[j] != '\0' && i == cur_words)
+		while (str[j] != '\0' && i == cur_word)
 		{
 			if (str[j] != ' ')
 			{
-				while (str[j] != '\0' && str[j] != ' ')
-				{
-					ptr1[i][k] = str[j]; j++; k++;
-				}
-				ptr1[i][k] = '\0'; i++; k = 0;
+				words_arr[i][k] = str[j];
+				k++;
+			}
+			if (str[j + 1] == ' ' || str[j + 1] == '\0')
+			{
+				words_arr[i][k] = '\0';
+				i++;
+				k = 0;
 			}
 			j++;
 		}
 	}
-	ptr1[i] = NULL; free(sizes);
-	return (ptr1);
+	words_arr[i] = NULL;
+	free(sizes);
+	return (words_arr);
 }
