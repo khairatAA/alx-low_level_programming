@@ -3,8 +3,8 @@
 
 /**
  * main - Entry point
- * argc: number of argument
- * argv: string of argument
+ * @argc: number of argument
+ * @argv: string of argument
  *
  * Return: return success
  */
