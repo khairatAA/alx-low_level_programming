@@ -13,7 +13,7 @@ void print_all(const char * const format, ...)
 {
 	va_list pr;
 	unsigned int i = 0;
-	char *string = va_arg(pr, char *), *space = "";
+	char *string, *space = "";
 
 	if (format != NULL)
 	{
@@ -33,6 +33,7 @@ void print_all(const char * const format, ...)
 						va_arg(pr, double));
 					break;
 				case 's':
+					string = va_arg(pr, char *);
 					if (!string)
 						string = "(nil)";
 					printf("%s%s", space, string);
@@ -45,8 +46,6 @@ void print_all(const char * const format, ...)
 			i++;
 		}
 		va_end(pr);
-		printf("\n");
 	}
-	else
 		printf("\n");
 }
