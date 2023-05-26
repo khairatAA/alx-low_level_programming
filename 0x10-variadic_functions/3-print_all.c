@@ -15,9 +15,10 @@ void print_all(const char * const format, ...)
 	unsigned int i;
 	char *separator = "";
 	char *string;
-	va_start(print_args, format);
+
 	if (format)
 	{
+		va_start(print_args, format);
 		i = 0;
 		while (format[i])
 		{
