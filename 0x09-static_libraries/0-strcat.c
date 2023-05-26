@@ -3,15 +3,14 @@
 #include "main.h"
 
 /**
- * _strncat - concatenates two strings
+ * _strcat - concatenates two strings
  * @dest: string to be tested
- * @src:  string to be tested
- * @n: integer
- * Return: success
+ * @src: string to be tested
+ * Return: Success
  */
-char *_strncat(char *dest, char *src, int n)
+char *_strcat(char *dest, char *src)
 {
-	strncat(dest, src, n);
+	strcat(dest, src);
 
 	return (dest);
 }

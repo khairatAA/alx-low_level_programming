@@ -1,17 +1,22 @@
 #include "main.h"
-#include <stdio.h>
+#include <ctype.h>
 
 /**
- * print_alphabet - Prints the alphabet in lowercase
+ * _isalpha - checks for alphabetic character
+ *
+ * @c: is integer to test
+ *
+ * Return: Always 1 if _isalpha is success, else return 0.
  */
 
-void print_alphabet(void)
+int _isalpha(int c)
 {
-	char ch;
-
-	for (ch = 'a'; ch <= 'z'; ch++)
+	if (isalpha(c))
 	{
-		_putchar(ch);
+		return (1);
 	}
-	_putchar('\n');
+	else
+	{
+		return (0);
+	}
 }
