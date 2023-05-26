@@ -13,13 +13,12 @@ void print_all(const char * const format, ...)
 {
 	va_list pr;
 	unsigned int i = 0;
-	char *space = "";
-	char *string;
+	char *string = va_arg(pr, char *), *space = "";
 
-	if (format)
+	if (format != NULL)
 	{
 		va_start(pr, format);
-		while (format != NULL && format[i])
+		while (format[i])
 		{
 			switch (format[i])
 			{
@@ -34,7 +33,6 @@ void print_all(const char * const format, ...)
 						va_arg(pr, double));
 					break;
 				case 's':
-					string = va_arg(pr, char *);
 					if (!string)
 						string = "(nil)";
 					printf("%s%s", space, string);
@@ -49,4 +47,6 @@ void print_all(const char * const format, ...)
 		va_end(pr);
 		printf("\n");
 	}
+	else
+		printf("\n");
 }
