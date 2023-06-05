@@ -11,6 +11,8 @@ void free_listint2(listint_t **head)
 	listint_t *temp = *head;
 	listint_t *currentNode;
 
+	if (head == NULL || *head == NULL)
+		return;
 	while (temp != NULL)
 	{
 		currentNode = temp;
