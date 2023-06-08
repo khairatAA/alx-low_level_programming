@@ -15,7 +15,6 @@ void print_binary(unsigned long int n)
 	if (n == 0)
 	{
 		_putchar('0');
-		_putchar('\n');
 		return;
 	}
 	for (i = sizeof(unsigned long int) * 8 - 1; i >= 0; i--)
@@ -29,5 +28,4 @@ void print_binary(unsigned long int n)
 		else if (!zeros)
 			_putchar('0');
 	}
-	_putchar('\n');
 }
