@@ -17,10 +17,10 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	int fd;
 	char *buffer;
 
+	if (filename == NULL)
+		return (0);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (0);
-	if (filename == NULL)
 		return (0);
 	buffer = malloc(letters + 1);
 	if (buffer == NULL)
@@ -35,7 +35,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		free(buffer);
 		return (0);
 	}
-	byteWrite = write(1, buffer, bytesRead);
+	byteWrite = write(STDOUT_FILENO, buffer, bytesRead);
 	if (byteWrite == -1)
 	{
 		close(fd);
