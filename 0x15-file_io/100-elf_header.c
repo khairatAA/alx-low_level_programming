@@ -27,6 +27,7 @@ const char *get_class(unsigned char class)
 const char *get_data(unsigned char data)
 {
 	switch (data)
+	{
 		case ELFDATA2LSB:
 			return ("2's complement, little endian");
 		case ELFDATA2MSB:
@@ -111,18 +112,28 @@ int main(int argc, char *argv[])
 	Elf64_Ehdr elfHeader;
 
 	if (argc != 2)
-		handleError("Usage: elf_header elf_filename");
+	{
+		perror("Usage: elf_header elf_filename");
+		exit(98);
+	}
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		handleError("Unable to open the file");
+	{
+		perror("Unable to open the file");
+		exit(98);
+	}
 	if (read(fd, &elfHeader, sizeof(elfHeader)) != sizeof(elfHeader))
-		handleError("Unable to read the elfHeader");
+	{
+		perror("Unable to read the elfHeader");
+		exit(98);
+	}
 	if (elfHeader.e_ident[EI_MAG0] != ELFMAG0 ||
 		elfHeader.e_ident[EI_MAG1] != ELFMAG1 ||
 		elfHeader.e_ident[EI_MAG2] != ELFMAG2 ||
 		elfHeader.e_ident[EI_MAG3] != ELFMAG3)
 	{
-		handleError("This is not an ELF file");
+		perror("This is not an ELF file");
+		exit(98);
 	}
 	printf("ELF Header:\n");
 	printf(" Magic:  ");
