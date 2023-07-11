@@ -12,7 +12,7 @@
 int main(int argc, char *argv[])
 {
 	const char *file_from = argv[1], *file_to = argv[2];
-	int fp_to, fp_from;
+	int fd_to, fd_from;
 	ssize_t bytesRead, bytesWrite;
 	char buffer[1024];
 
@@ -21,21 +21,21 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	fp_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-	if (fp_to == -1)
-	{
-		fprintf(stderr, "Error: Can't read from file %s\n", file_to);
-		exit(99);
-	}
-	fp_from = open(file_from, O_RDONLY);
-	if (fp_from == -1)
+	fd_from = open(file_from, O_RDONLY);
+	if (fd_from == -1)
 	{
 		fprintf(stderr, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
-	while ((bytesRead = read(fp_from, buffer, sizeof(buffer))) > 0)
+	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	if (fd_to == -1)
 	{
-		bytesWrite = write(fp_to, buffer, bytesRead);
+		fprintf(stderr, "Error: Can't write to %s\n", file_to);
+		exit(99);
+	}
+	while ((bytesRead = read(fd_from, buffer, sizeof(buffer))) > 0)
+	{
+		bytesWrite = write(fd_to, buffer, bytesRead);
 		if (bytesWrite == -1)
 		{
 			fprintf(stderr, "Error: Can't write to %s\n", file_to);
@@ -47,9 +47,9 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
-	if (close(fp_from) == -1 || close(fp_to) == -1)
+	if (close(fd_from) == -1 || close(fd_to) == -1)
 	{
-		fprintf(stderr, "Error: Can't close fd %d\n", fp_to);
+		fprintf(stderr, "Error: Can't close fd %d\n", fd_to);
 		exit(100);
 	}
 	return (0);
