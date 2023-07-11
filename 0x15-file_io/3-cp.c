@@ -11,7 +11,7 @@
 
 int main(int argc, char *argv[])
 {
-	const char *file_from, *file_to;
+	const char *file_from = argv[1], *file_to = argv[2];
 	int fp_to, fp_from;
 	ssize_t bytesRead, bytesWrite;
 	char buffer[1024];
@@ -21,13 +21,11 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	file_from = argv[1];
-	file_to = argv[2];
 	fp_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fp_to == -1)
 	{
 		fprintf(stderr, "Error: Can't read from file %s\n", file_to);
-		exit(98);
+		exit(99);
 	}
 	fp_from = open(file_from, O_RDONLY);
 	if (fp_from == -1)
