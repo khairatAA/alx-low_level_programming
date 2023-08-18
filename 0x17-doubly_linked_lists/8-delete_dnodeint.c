@@ -4,6 +4,7 @@
  *  delete_dnodeint_at_index - deletes the node at index index of a list
  *  @head: the head of the list
  *  @index: the index of the list to be deleted
+ *  Return: -1 or 1
  */
 
 int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
@@ -34,7 +35,7 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	{
 		while (i < index)
 		{
-			temp = temp -> next;
+			temp = temp->next;
 			i++;
 		}
 		temp->prev->next = temp->next;
