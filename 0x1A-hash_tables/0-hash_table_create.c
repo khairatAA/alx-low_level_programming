@@ -26,6 +26,8 @@ hash_node_t *create_item(char *key, char *value)
 	strcpy(item->key, key);
 	strcpy(item->value, value);
 
+	item->next = NULL;
+
 	return (item);
 }
 
@@ -51,10 +53,9 @@ hash_table_t *hash_table_create(unsigned long int size)
 		return (NULL);
 	}
 
-	while (table->size)
+	while (i < table->size)
 	{
 		table->array[i] = NULL;
-		table->size--;
 		i++;
 	}
 
