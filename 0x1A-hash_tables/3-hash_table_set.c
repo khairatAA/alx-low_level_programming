@@ -51,8 +51,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash_node_t *bucket = NULL;
 	hash_node_t *new_node = NULL;
 
-	index = key_index((const unsigned char *)key, ht->size);
+	if (key == NULL || *key == '\0')
+		return (0);
 
+	index = key_index((const unsigned char *)key, ht->size);
 	bucket = ht->array[index];
 
 	if (bucket == NULL)
