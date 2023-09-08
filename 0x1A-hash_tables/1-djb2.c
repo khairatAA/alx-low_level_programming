@@ -1,9 +1,9 @@
 #include "hash_tables.h"
 
 /**
- * hash_djb2 - the hash function that returns the index
- * @str: the string who index is to be generated
- * Return: the index
+ * hash_djb2 - the hash function returns the hash code to generate the index
+ * @str: the string whoes hash code is to be generated
+ * Return: the hash code
  */
 
 unsigned long int hash_djb2(const unsigned char *str)
