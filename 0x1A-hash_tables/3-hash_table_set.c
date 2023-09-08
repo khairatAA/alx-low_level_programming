@@ -54,12 +54,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (key == NULL || *key == '\0')
 		return (0);
+	if (ht == NULL)
+		return (0);
 	index = key_index((const unsigned char *)key, ht->size);
 	bucket = ht->array[index];
-
 	if (bucket == NULL)
 	{
-		bucket = create_item((char *)key, (char *)value);
+		bucket = create_item((char *)key, (char *)strdup(value));
 		if (bucket == NULL)
 			return (0);
 		ht->array[index] = bucket;
@@ -75,12 +76,11 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 				tmp->value = strdup(value);
 				if (tmp->value == NULL)
 					return (0);
-
 				return (1);
 			}
 			tmp = tmp->next;
 		}
-		new_node = create_item((char *)key, (char *)value);
+		new_node = create_item((char *)key, (char *)strdup(value));
 		if (new_node == NULL)
 			return (0);
 		new_node->next = bucket;
