@@ -1,7 +1,8 @@
 #include "hash_tables.h"
 
 /**
- * free_array - frees the key valur pair
+ * free_items - frees the key valur pair
+ * @tmp: the tmp
  */
 
 void free_items(hash_node_t *tmp)
