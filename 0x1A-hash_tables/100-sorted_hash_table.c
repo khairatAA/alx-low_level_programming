@@ -131,6 +131,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 	insert_to_sll(&(ht->shead), new_node);
 
+	ht->stail = new_node;
+
 	new_node->next = ht->array[index];
 	ht->array[index] = new_node;
 
@@ -180,18 +182,21 @@ void shash_table_print(const shash_table_t *ht)
 	unsigned long int count = 0;
 	shash_node_t *tmp = ht->shead;
 
-	printf("{");
-	while (tmp != NULL)
+	if (ht != NULL)
 	{
-		if (count > 0)
+		printf("{");
+		while (tmp != NULL)
 		{
-			printf(", ");
+			if (count > 0)
+			{
+				printf(", ");
+			}
+			printf("'%s': '%s'", tmp->key, tmp->value);
+			tmp = tmp->snext;
+			count++;
 		}
-		printf("'%s': '%s'", tmp->key, tmp->value);
-		tmp = tmp->snext;
-		count++;
+		printf("}\n");
 	}
-	printf("}\n");
 }
 
 /**
@@ -204,16 +209,19 @@ void shash_table_print_rev(const shash_table_t *ht)
 	unsigned long int count = 0;
 	shash_node_t *tmp = ht->stail;
 
-	printf("{");
-	while (tmp != NULL)
+	if (ht != NULL)
 	{
-		if (count > 0)
-			printf(", ");
-		printf("'%s': '%s'", tmp->key, tmp->value);
-		tmp = tmp->sprev;
-		count++;
+		printf("{");
+		while (tmp != NULL)
+		{
+			if (count > 0)
+				printf(", ");
+			printf("'%s': '%s'", tmp->key, tmp->value);
+			tmp = tmp->sprev;
+			count++;
+		}
+		printf("}\n");
 	}
-	printf("}\n");
 }
 
 /**
