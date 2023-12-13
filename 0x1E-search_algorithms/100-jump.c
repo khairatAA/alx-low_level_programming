@@ -3,6 +3,7 @@
  * jump_search - searches for a value in a sorted array of integers
  * using the Jump search algorithm
  * @array: is a pointer to the first element of the array to search in
+ * @size: size of the array
  * @value: is the value to search for
  * Return: return the first index where value is located
  */
@@ -16,7 +17,7 @@ int jump_search(int *array, size_t size, int value)
 
 	jump = sqrt(size);
 
-	for (i = 0; i < size; i +=jump)
+	for (i = 0; i < size; i += jump)
 	{
 		if (array[i] == value)
 		{
