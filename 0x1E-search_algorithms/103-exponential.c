@@ -62,9 +62,8 @@ int exponential_search(int *array, size_t size, int value)
 	if (array == NULL)
 		return (-1);
 
-	if (array[0] == value) {
-		return 0;
-	}
+	if (array[0] == value)
+		return (0);
 
 	i = 1;
 	while (i < size && array[i] <= value)
@@ -77,5 +76,5 @@ int exponential_search(int *array, size_t size, int value)
 	result = Binary_Search(array, value,
 			(i / 2), (i < size) ? i : (size - 1));
 
-	return result;
+	return (result);
 }
